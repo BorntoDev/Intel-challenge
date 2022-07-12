@@ -1,0 +1,69 @@
+<head>
+    <title>✅ Smart Choice</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        var i = 0
+
+        var bestCase = []
+
+        function addItem() {
+            var productName = document.getElementById("product_name").value
+            var price = parseFloat(document.getElementById("price").value)
+            var volumn = parseFloat(document.getElementById("volumn").value)
+            var ppv = price / volumn
+
+            if(bestCase.length == 0 || bestCase[0][3] >= ppv)
+            {
+                bestCase[0] = [productName, price, volumn, ppv]
+            }
+            document.getElementById("myitems").innerHTML += "ชื่อสินค้า:"+productName+"("+price+") ได้ปริมาณ "+ volumn +"หน่วย >> ราคาต่อหน่วย ="+ ppv+ "บาท <br>"
+
+            document.getElementById("result").innerHTML = "✅ สินค้าที่คุ้มค่าที่สุดคือ" + bestCase[0][0] + " ในราคา " + bestCase[0][1] + "บาท ได้ปริมาณถึง " +  bestCase[0][2] + "หน่วย และ ราคาต่อหน่วยคือ " + bestCase[0][3]+ "บาท"
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="px-4 py-5 my-5 text-center">
+            <img class="d-block mx-auto mb-4" src="/check.svg" alt="" width="72" height="57">
+            <h1 class="display-5 fw-bold">Smart Choice</h1>
+            <div class="col-lg-6 mx-auto">
+              <p class="lead mb-4">เลือกซื้อสินค้าโดนใจ ในราคาที่ดีที่สุดได้แล้ววันนี้ !</p> 
+            </div>
+          </div>
+
+          <div class="alert alert-success" role="alert" id="result">
+            ราคาสินค้าที่ถูกที่สุดจะแสดงตรงนี้ ! แค่คุณกรอกข้อมูลเท่านั้น !! 🚀
+          </div>
+
+        <div class="mb-3 row">
+            <div class="col-sm-10">
+                <input class="form-control form-control-lg" type="text" id="price" placeholder="กรอกราคา เช่น 590">
+            </div>
+            <label for="price" class="col-sm-2 col-form-label">บาท</label>
+        </div>
+        <div class="mb-3 row">
+            <div class="col-sm-10">
+            <input class="form-control form-control-lg" type="text" id="volumn" placeholder="กรอกหน่วย เช่น 100">
+        </div>
+        <label for="volumn" class="col-sm-2 col-form-label">หน่วย</label>
+    </div>
+    <div class="mb-3 row">
+        <div class="col-sm-10">
+            <label for="volumn" class="col-sm-2 col-form-label">ชื่อสินค้า</label>
+            <input class="form-control form-control-lg" type="text" id="product_name" placeholder="ชื่อสินค้า">
+        </div>
+        </div>
+        <button onclick="addItem()" class="btn btn-primary mb-3">เพิ่ม และ คำนวณ</button>
+        <h2>รายการสินค้า</h2>
+        <p id="myitems"></p>
+</body>
